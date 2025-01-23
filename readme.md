@@ -1,5 +1,5 @@
 인프런의 **"스프링부트 시큐리티 & JWT 강의"** 강의 학습을 위한 repository입니다.<br/>
-jdk1.8, maven을 이용해서 개발을 할 예정입니다.
+springboot 3.4.1, jdk17, maven, yml,SpringSecurity6을 이용해서 개발을 할 예정입니다.
 
 # 깃컨벤션
 
