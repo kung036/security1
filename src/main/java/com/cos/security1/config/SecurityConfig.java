@@ -30,9 +30,11 @@ public class SecurityConfig {
 
         // 로그인 페이지 설정
 //        http.formLogin(Customizer.withDefaults()); // 디폴트 로그인 페이지
-        http.formLogin(
-                formLogin ->
-                        formLogin.loginPage("/login-forn")
+        http.formLogin(formLogin ->
+                formLogin.loginPage("/login-form") // 로그인할 페이지 경로 설정
+                         // 로그인 처리 URL(/login 주소가 호출되면 시큐리티가 낚아채서 대신 로그인 진행)
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/") // 로그인 성공 시 이동 페이지
         );
 
         return http.build();

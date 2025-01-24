@@ -8,4 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 // @Repository 어노테이션이 없어도 IoC가 됨 -> 이유 : JpaRepository를 상속햇기 때문
 @ResponseBody
 public interface UserRepository extends JpaRepository<User, Integer> {
+    // select * from user where username = ?
+    public User findByUsername(String username); // JPA name 함수
 }
