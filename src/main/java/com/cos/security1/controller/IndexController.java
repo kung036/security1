@@ -3,6 +3,8 @@ package com.cos.security1.controller;
 import com.cos.security1.model.User;
 import com.cos.security1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,5 +59,18 @@ public class IndexController {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/login-form";
+    }
+
+    @Secured("ROLE_ADMIN") // 특정 메서드에 간단하게 권한 선언
+    @GetMapping("/info")
+    public @ResponseBody String info() {
+        return "개인정보";
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')") // data() 메서드 실행 진적에 실행됨
+//    @postAuthorize // data() 메서드 실행 후 실행되는 메서드
+    @GetMapping("/data")
+    public @ResponseBody String data() {
+        return "데이터 개인정보";
     }
 }
